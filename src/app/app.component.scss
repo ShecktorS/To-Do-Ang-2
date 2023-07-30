@@ -58,8 +58,7 @@
 
         p {
           height: 100%;
-          // width: 70%;
-          border-bottom: solid 1px rgb(230, 230, 230);
+          cursor: pointer;
         }
 
         button {
@@ -75,10 +74,10 @@
         .edit-buttons {
           display: flex;
 
-          button:nth-last-child(1) {
+          button:nth-last-child(2) {
             background-color: cornflowerblue;
           }
-          button:nth-last-child(2) {
+          button:nth-last-child(1) {
             background-color: rgb(76, 193, 88);
           }
         }

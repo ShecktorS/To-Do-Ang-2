@@ -8,7 +8,17 @@
     <ul class="list-container">
       <p *ngIf="list.length < 1">Nessuna task presente!</p>
       <li *ngFor="let todo of list; let i = index">
-        <p class="info-message" *ngIf="!todo.edit">{{ todo.title }}</p>
+        <p (click)="changeStatus(i)" class="info-message" *ngIf="!todo.edit">
+          {{ todo.completed ? " ✓" : "" }}
+
+          <span
+            [ngStyle]="{
+              textDecorationLine: todo.completed ? 'line-through' : ''
+            }"
+          >
+            {{ todo.title }}
+          </span>
+        </p>
         <input
           type="text"
           *ngIf="todo.edit"
@@ -16,8 +26,8 @@
           [(ngModel)]="taskEdited"
         />
         <div class="edit-buttons" *ngIf="todo.edit">
-          <button (click)="editTaskTitle(i)">Conferma</button>
           <button (click)="changeEditStatus(i, false)">Annulla</button>
+          <button (click)="editTaskTitle(i)">Conferma</button>
         </div>
         <div *ngIf="!todo.edit" class="standard-buttons">
           <button (click)="changeEditStatus(i, true)">Modifica</button>

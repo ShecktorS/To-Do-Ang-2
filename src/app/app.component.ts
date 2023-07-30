@@ -10,8 +10,7 @@ export class AppComponent implements OnInit {
   taskEdited: string = '';
   list = [
     { title: 'pippo', edit: false, completed: false },
-    { title: 'lino', edit: false, completed: false },
-    { title: 'sdsd', edit: false, completed: false },
+    { title: 'lili', edit: false, completed: false },
   ];
 
   ngOnInit(): void {}
@@ -39,5 +38,9 @@ export class AppComponent implements OnInit {
   editTaskTitle(i: number) {
     this.list[i].title = this.taskEdited;
     this.list[i].edit = false;
+  }
+
+  changeStatus(i: number) {
+    this.list[i].completed = !this.list[i].completed;
   }
 }
