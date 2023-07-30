@@ -1,0 +1,97 @@
+.to-do-list-container {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  background-color: antiquewhite;
+
+  .to-do-list-content {
+    width: clamp(450px, 80%, 1000px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 20px;
+    background-color: rgb(255, 255, 255);
+
+    form {
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 30px;
+      gap: 10px;
+
+      input {
+        height: 50px;
+        width: 40%;
+        border: none;
+        border-bottom: 1px solid black;
+      }
+
+      input:nth-last-child(2) {
+        outline-color: rgb(208, 176, 209);
+        font-size: 1.2em;
+      }
+
+      input:nth-last-child(1) {
+        width: 50px;
+        height: 50px;
+        font-size: 1.9em;
+        color: rgb(144, 144, 144);
+        border-radius: 50%;
+        border: none;
+      }
+    }
+
+    .list-container {
+      width: 80%;
+      list-style-type: none;
+
+      li {
+        margin-top: 20px;
+        height: 40px;
+        display: flex;
+        justify-content: space-between;
+
+        p {
+          height: 100%;
+          // width: 70%;
+          border-bottom: solid 1px rgb(230, 230, 230);
+        }
+
+        button {
+          height: 100%;
+          border: none;
+          margin-left: 10px;
+          color: white;
+          cursor: pointer;
+          border-radius: 10px;
+          min-width: 80px;
+        }
+
+        .edit-buttons {
+          display: flex;
+
+          button:nth-last-child(1) {
+            background-color: cornflowerblue;
+          }
+          button:nth-last-child(2) {
+            background-color: rgb(76, 193, 88);
+          }
+        }
+
+        .standard-buttons {
+          button:nth-last-child(2) {
+            background-color: cornflowerblue;
+          }
+          button:nth-last-child(1) {
+            background-color: rgb(229, 47, 47);
+          }
+        }
+      }
+    }
+  }
+}
