@@ -6,9 +6,9 @@
     </form>
 
     <ul class="list-container">
-      <p *ngIf="list.length < 1">Nessuna task presente!</p>
+      <p class="info-message" *ngIf="list.length < 1">Nessuna task presente!</p>
       <li *ngFor="let todo of list; let i = index">
-        <p (click)="changeStatus(i)" class="info-message" *ngIf="!todo.edit">
+        <p (click)="changeStatus(i)" *ngIf="!todo.edit">
           {{ todo.completed ? " ✓" : "" }}
 
           <span
@@ -20,17 +20,18 @@
           </span>
         </p>
         <input
+          class="edit-input"
           type="text"
           *ngIf="todo.edit"
           value="{{ todo.title }}"
-          [(ngModel)]="taskEdited"
+          [(ngModel)]="list[i].title"
         />
         <div class="edit-buttons" *ngIf="todo.edit">
           <button (click)="changeEditStatus(i, false)">Annulla</button>
           <button
-            [disabled]="taskEdited === todo.title"
+            [disabled]="todo.originalTitle === todo.title"
             [ngStyle]="{
-              filter: taskEdited === todo.title ? 'grayscale(1)' : ''
+              filter: todo.originalTitle === todo.title ? 'grayscale(1)' : ''
             }"
             (click)="editTaskTitle(i)"
           >

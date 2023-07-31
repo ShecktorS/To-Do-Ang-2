@@ -7,14 +7,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   newTask: string = '';
-  taskEdited: string = '';
+  // taskEdited: string = '';
   list = [
-    { title: 'Prova', edit: false, completed: false },
-    { title: 'con LocalStorage', edit: false, completed: false },
+    { title: 'Prova', edit: false, completed: false, originalTitle: '' },
+    {
+      title: 'con LocalStorage',
+      edit: false,
+      completed: false,
+      originalTitle: '',
+    },
   ];
   storedList: [] = [];
 
-  rewriteSotrage = () => {
+  rewriteStorage = () => {
     localStorage.setItem('list', JSON.stringify(this.list));
   };
 
@@ -35,31 +40,42 @@ export class AppComponent implements OnInit {
     } else if (this.newTask.length < 1) {
       alert('Non Puoi Inserire una task vuota');
     } else {
-      this.list.push({ title: this.newTask, edit: false, completed: false });
+      this.list.push({
+        title: this.newTask,
+        edit: false,
+        completed: false,
+        originalTitle: '',
+      });
       this.newTask = '';
     }
-    this.rewriteSotrage();
+
+    this.rewriteStorage();
   };
 
   // Per rimuovere un elemento
   deleteTask = (i: number) => {
     this.list.splice(i, 1);
-    this.rewriteSotrage();
+
+    this.rewriteStorage();
   };
 
   changeEditStatus(i: number, edit: boolean) {
     this.list[i].edit = edit;
-    this.taskEdited = this.list[i].title;
+    this.list[i].originalTitle = this.list[i].title;
   }
 
   editTaskTitle(i: number) {
-    this.list[i].title = this.taskEdited;
+    let editedTitle = this.list[i].title;
+    this.list[i].title = this.list[i].originalTitle;
     this.list[i].edit = false;
-    this.rewriteSotrage();
+    this.list[i].title = editedTitle;
+
+    this.rewriteStorage();
   }
 
   changeStatus(i: number) {
     this.list[i].completed = !this.list[i].completed;
-    this.rewriteSotrage();
+
+    this.rewriteStorage();
   }
 }
