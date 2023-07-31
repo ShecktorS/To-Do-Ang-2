@@ -27,7 +27,15 @@
         />
         <div class="edit-buttons" *ngIf="todo.edit">
           <button (click)="changeEditStatus(i, false)">Annulla</button>
-          <button (click)="editTaskTitle(i)">Conferma</button>
+          <button
+            [disabled]="taskEdited === todo.title"
+            [ngStyle]="{
+              filter: taskEdited === todo.title ? 'grayscale(1)' : ''
+            }"
+            (click)="editTaskTitle(i)"
+          >
+            Conferma
+          </button>
         </div>
         <div *ngIf="!todo.edit" class="standard-buttons">
           <button (click)="changeEditStatus(i, true)">Modifica</button>
